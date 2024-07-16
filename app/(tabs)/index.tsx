@@ -16,21 +16,9 @@ import { ThemedView } from "@/components/ThemedView";
 
 export default function HomeScreen() {
 
-  function eventPressStyle({ pressed }: PressableStateCallbackType) {
-    return [styles.boton,{ backgroundColor: pressed ? '#11EBBF':'#83EBBF' }]
-  }
-
   return (
     <View style={styles.fondo}>
-      <Pressable onPress={() => {}} style={eventPressStyle}>
-        <Text>Productos</Text>
-      </Pressable>
-      <Pressable onPress={() => {}} style={eventPressStyle}>
-        <Text>Productos</Text>
-      </Pressable>
-      <Pressable onPress={() => {}} style={eventPressStyle}>
-        <Text>Productos</Text>
-      </Pressable>
+      
     </View>
   );
 }
@@ -41,15 +29,5 @@ const styles = StyleSheet.create({
     backgroundColor: "#F5F5F5",
     justifyContent: "space-evenly",
     alignItems: "center",
-  },
-  boton: {
-    display: "flex",
-    width: 250,
-    height: 120,
-    borderRadius: 25,
-    alignItems: "center",
-    textAlign: "center",
-    textAlignVertical: "center",
-    justifyContent: "center",
   },
 });
