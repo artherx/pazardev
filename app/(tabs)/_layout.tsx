@@ -4,25 +4,32 @@ import React from "react";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
   return (
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        headerShown: false,
+        headerShown: true,
+        headerStyle: [{ backgroundColor: "#F5F5F5", elevation: 0 }],
+        headerTitleStyle: [{ color: "#1F1F1F" }],
         tabBarStyle: styles.tabLabel,
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          tabBarLabel: () => null,
-          tabBarIcon: ({ color, focused }) => (
-            <View style={styles.botones}>
+          headerTitle: "Inicio",
+          tabBarIcon: () => null,
+          tabBarLabel: ({ color, focused }) => (
+            <View
+              style={[
+                styles.botones,
+                Platform.OS === "android" ? styles.botonesAndroid : {},
+              ]}
+            >
               <View style={focused ? styles.backgroundFocuse : null}>
                 <TabBarIcon
                   name={focused ? "home" : "home-outline"}
@@ -30,7 +37,9 @@ export default function TabLayout() {
                   size={focused ? 40 : 28}
                 />
               </View>
-              <Text style={focused ? {color:'#EFEFEF'} : { fontSize: 0 }}>Inicio</Text>
+              <Text style={focused ? { color: "#EFEFEF" } : { fontSize: 0 }}>
+                Inicio
+              </Text>
             </View>
           ),
         }}
@@ -38,17 +47,51 @@ export default function TabLayout() {
       <Tabs.Screen
         name="explore"
         options={{
-          tabBarLabel: () => null,
-          tabBarIcon: ({ color, focused }) => (
-            <View style={styles.botones}>
+          headerTitle: "Recursos",
+          tabBarIcon: () => null,
+          tabBarLabel: ({ color, focused, position }) => (
+            <View
+              style={[
+                styles.botones,
+                Platform.OS === "android" ? styles.botonesAndroid : {},
+              ]}
+            >
               <View style={focused ? styles.backgroundFocuse : null}>
                 <TabBarIcon
-                  name={focused ? "code-slash" : "code-slash-outline"}
+                  name={focused ? "storefront" : "storefront-outline"}
                   color="#1F1F1F"
                   size={focused ? 40 : 28}
                 />
               </View>
-              <Text style={focused ? {color:'#EFEFEF'} : { fontSize: 0 }}>explore</Text>
+              <Text style={focused ? { color: "#EFEFEF" } : { fontSize: 0 }}>
+                Recursos
+              </Text>
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="emplemen"
+        options={{
+          headerTitle: "Empleados",
+          tabBarIcon: () => null,
+          tabBarLabel: ({ color, focused, position }) => (
+            <View
+              style={[
+                styles.botones,
+                Platform.OS === "android" ? styles.botonesAndroid : {},
+              ]}
+            >
+              <View style={focused ? styles.backgroundFocuse : null}>
+                <TabBarIcon
+                  name={focused ? "people" : "people-outline"}
+                  color="#1F1F1F"
+                  size={focused ? 40 : 28}
+                />
+              </View>
+              <Text style={focused ? { color: "#EFEFEF" } : { fontSize: 0 }}>
+                Empleados
+              </Text>
             </View>
           ),
         }}
@@ -56,17 +99,29 @@ export default function TabLayout() {
       <Tabs.Screen
         name="config"
         options={{
-          tabBarLabel: () => null,
-          tabBarIcon: ({ color, focused }) => (
-            <View style={styles.botones}>
+          headerTitle: "Recursos",
+          tabBarIcon: () => null,
+          tabBarLabel: ({ color, focused }) => (
+            <View
+              style={[
+                styles.botones,
+                Platform.OS === "android" ? styles.botonesAndroid : {},
+              ]}
+            >
               <View style={focused ? styles.backgroundFocuse : null}>
                 <TabBarIcon
-                  name={focused ? "ellipsis-vertical-sharp" : "ellipsis-vertical-outline"}
+                  name={
+                    focused
+                      ? "ellipsis-vertical-sharp"
+                      : "ellipsis-vertical-outline"
+                  }
                   color="#1F1F1F"
                   size={focused ? 40 : 28}
                 ></TabBarIcon>
               </View>
-              <Text style={focused ? {color:'#EFEFEF'} : { fontSize: 0 }}>Mas</Text>
+              <Text style={focused ? { color: "#EFEFEF" } : { fontSize: 0 }}>
+                Mas
+              </Text>
             </View>
           ),
         }}
@@ -77,22 +132,32 @@ export default function TabLayout() {
 
 const styles = StyleSheet.create({
   backgroundFocuse: {
-    width: "100%",
     backgroundColor: "#EFEFEF",
-    paddingHorizontal:10,
-    paddingVertical:5,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 10,
     color: "#1F1F1F",
+    // Sombra para iOS
+    shadowColor: "#000", // Color de la sombra
+    shadowOffset: { width: 0, height: 2 }, // Desplazamiento de la sombra
+    shadowOpacity: 0.25, // Opacidad de la sombra
+    shadowRadius: 3.84, // Radio de la sombra
+    // Sombra para Android
+    elevation: 5, // Elevación para sombra en Android
   },
   botones: {
     alignItems: "center",
     justifyContent: "center",
   },
+  botonesAndroid: {
+    position: "absolute",
+    bottom: 20,
+  },
   tabLabel: {
     height: 80,
     backgroundColor: "#179F8B",
-    justifyContent: "center",
+    borderColor: "#179F8B",
   },
 });
