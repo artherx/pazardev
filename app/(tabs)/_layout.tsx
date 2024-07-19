@@ -99,7 +99,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="config"
         options={{
-          headerTitle: "Recursos",
+          headerTitle: "Configuraciones",
           tabBarIcon: () => null,
           tabBarLabel: ({ color, focused }) => (
             <View
