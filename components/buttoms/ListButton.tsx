@@ -1,7 +1,7 @@
 import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
-import { TItemList } from "@/domain/types/ListButton.type";
+import type { TItemList } from "@/domain/types/ListButton.type";
 
 interface IListButtonProps {
   lista: TItemList[];
