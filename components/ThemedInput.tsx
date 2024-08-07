@@ -13,10 +13,13 @@ export function ThemedInput({ lightColor, darkColor, type, ...rest }: input) {
 		"primary",
 	);
 	const text = useThemeColor({ light: lightColor, dark: darkColor }, "text");
+	const textH = useThemeColor({ light: lightColor, dark: darkColor }, "textholder");
 	return (
 		<TextInput
+			placeholderTextColor={textH}
+			selectionColor={background}
 			style={[
-				{ backgroundColor: background, color: text },
+				{ borderColor:background, borderStyle:"solid", borderWidth:2, backgroundColor: "transparent", color: text },
 				type === "default" ? styles.default : undefined,
 			]}
 			{...rest}

@@ -5,16 +5,20 @@ import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
 import { Platform, StyleSheet, Text, View } from "react-native";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 export default function TabLayout() {
 	const colorScheme = useColorScheme();
+	const backgroundColor = useThemeColor({ dark: undefined }, "background");
+	const text = useThemeColor({ dark: undefined }, "text");
+
 	return (
 		<Tabs
 			screenOptions={{
 				tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
 				headerShown: true,
-				headerStyle: [{ backgroundColor: "#F5F5F5", elevation: 0 }],
-				headerTitleStyle: [{ color: "#1F1F1F" }],
+				headerStyle: [{ backgroundColor: backgroundColor, elevation: 0 }],
+				headerTitleStyle: [{ color: text, fontSize: 20, fontWeight: "bold" }],
 				tabBarStyle: styles.tabLabel,
 			}}
 		>

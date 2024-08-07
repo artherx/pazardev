@@ -2,6 +2,8 @@ import { Pressable, StyleSheet, Text } from "react-native";
 import React from "react";
 import { useRouter } from "expo-router";
 import type { TItemList } from "@/domain/types/ListButton.type";
+import { ThemedText } from "../ThemedText";
+import { useThemeColor } from "@/hooks/useThemeColor";
 
 interface IListButtonProps {
   lista: TItemList[];
@@ -9,13 +11,14 @@ interface IListButtonProps {
 
 export function ListButton({ lista }: IListButtonProps) {
   const navegacion = useRouter();
+  const color = useThemeColor({},"secondary")
   return lista.map(({ nombre, route }) => (
     <Pressable
       key={nombre}
       onPress={() => navegacion.navigate(route)}
-      style={styles.fondoB}
+      style={[styles.fondoB ,{backgroundColor:color}]}
     >
-      <Text style={{ fontSize: 36, fontWeight: "bold", color:"#F5F5F5"}}>{nombre}</Text>
+      <ThemedText type="defaultSemiBold">{nombre}</ThemedText>
     </Pressable>
   ));
 }
@@ -25,6 +28,5 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     paddingHorizontal: 20,
     marginBottom: 20,
-    backgroundColor: "#179F8B",
   },
 });

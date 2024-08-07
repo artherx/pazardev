@@ -1,4 +1,5 @@
 import { ThemedButton } from "@/components/ThemedButton";
+import { ThemedView } from "@/components/ThemedView";
 import {
   Image,
   StyleSheet,
@@ -13,18 +14,17 @@ import {
 export default function HomeScreen() {
 
   return (
-    <View style={styles.fondo}>
+    <ThemedView style={styles.fondo}>
       <ThemedButton title="Productos" onPress={undefined}/>
       <ThemedButton title="Administrar empleados" onPress={undefined}/>
       <ThemedButton title="Administrar WEB" onPress={undefined}/>
-    </View>
+    </ThemedView>
   );
 }
 
 const styles = StyleSheet.create({
   fondo: {
     flex: 1,
-    backgroundColor: "#F5F5F5",
     justifyContent: "space-evenly",
     alignItems: "center",
   },
